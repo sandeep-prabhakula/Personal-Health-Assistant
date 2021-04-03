@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">By Your Side</string>
+    <string name="app_name">Healthy Side</string>
     <string name="forget_password_submit_button">Submit</string>
     <string name="registered_email_forget_password">Registered Email</string>
     <string name="e_mail_login">E-mail</string>
@@ -39,4 +39,6 @@
     <string name="bmi_chart">BMI Chart</string>
     <string name="exercise_img">Exercise Image</string>
     <string name="settings">Settings</string>
+    <string name="healthy_side_login_heading">Healthy Side</string>
+    <string name="welcome_to_login_heading">Welcome To</string>
 </resources>
