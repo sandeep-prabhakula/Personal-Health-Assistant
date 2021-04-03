@@ -35,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        ImageView settings = findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Settings.class));
+            }
+        });
         List<ModelClass> activities = new ArrayList<>();
         ModelClass act = new ModelClass(R.drawable.img,"Fitness");
         activities.add(act);
