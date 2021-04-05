@@ -27,7 +27,7 @@ public class Settings extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.Adapter adapter = new SettingsAdapter(settings, this);
+        RecyclerView.Adapter adapter = new SettingsAdapter(settings);
         recyclerView.setAdapter(adapter);
         TextView textView6 = findViewById(R.id.textView6);
         String mail = textView6.getText().toString().trim();

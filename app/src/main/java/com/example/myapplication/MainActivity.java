@@ -17,14 +17,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView signOut;
     private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = findViewById(R.id.recycler);
-        signOut = findViewById(R.id.signOut);
+        ImageView signOut = findViewById(R.id.signOut);
         auth  = FirebaseAuth.getInstance();
         signOut.setOnClickListener(v -> {
             auth.signOut();
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.Adapter adapter = new MainAdapter(activities, this);
+        RecyclerView.Adapter adapter = new MainAdapter(activities);
         recyclerView.setAdapter(adapter);
 
     }

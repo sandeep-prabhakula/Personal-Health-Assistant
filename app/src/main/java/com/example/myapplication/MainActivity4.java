@@ -29,7 +29,7 @@ public class MainActivity4 extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.Adapter adapter = new DietAdapter(diets, this);
+        RecyclerView.Adapter adapter = new DietAdapter(diets);
         recyclerView.setAdapter(adapter);
 //        textView11.setOnClickListener(new View.OnClickListener() {
 //            @Override

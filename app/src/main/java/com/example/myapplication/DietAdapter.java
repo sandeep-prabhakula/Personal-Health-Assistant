@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -15,12 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
-    private List<DietClass> diets;
-    private Context context;
+    private final List<DietClass> diets;
 
-    public DietAdapter(List<DietClass> diets, Context context) {
+    public DietAdapter(List<DietClass> diets) {
         this.diets = diets;
-        this.context = context;
     }
 
     @NonNull
@@ -35,12 +32,9 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull DietAdapter.ViewHolder holder, int position) {
         DietClass diet = diets.get(position);
         holder.textView11.setText(diet.getDiet());
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s = "https://www.healthline.com/health/"+holder.textView11.getText().toString().toLowerCase()+"?ref=global";
-                v.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(s)));
-            }
+        holder.linearLayout.setOnClickListener(v -> {
+            String s = "https://www.healthline.com/health/"+holder.textView11.getText().toString().toLowerCase()+"?ref=global";
+            v.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(s)));
         });
     }
 
@@ -49,13 +43,13 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.ViewHolder> {
         return diets.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView textView11;
-        private LinearLayout linearLayout;
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        private final TextView textView11;
+        private final LinearLayout linearLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView11 = (TextView)itemView.findViewById(R.id.textView11);
-            linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayout);
+            textView11 = itemView.findViewById(R.id.textView11);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
         }
     }
 }

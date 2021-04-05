@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class FitnessAdapter extends RecyclerView.Adapter<FitnessAdapter.ViewHolder> {
-    private List<FitnessModel> exercises;
-    private Context context;
+    private final List<FitnessModel> exercises;
 
-    public FitnessAdapter(List<FitnessModel> exercises, Context context) {
+    public FitnessAdapter(List<FitnessModel> exercises) {
         this.exercises = exercises;
-        this.context = context;
     }
 
     @NonNull
@@ -53,15 +50,15 @@ public class FitnessAdapter extends RecyclerView.Adapter<FitnessAdapter.ViewHold
         return exercises.size();
     }
 
-    public  class ViewHolder extends RecyclerView.ViewHolder{
-        private  ImageView exIcon;
-        private  TextView exName;
-        private  LinearLayout linearLayout;
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        private  final ImageView exIcon;
+        private  final TextView exName;
+        private  final LinearLayout linearLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            exIcon = (ImageView) itemView.findViewById(R.id.exIcon);
-            exName = (TextView) itemView.findViewById(R.id.exName);
-            linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayout);
+            exIcon = itemView.findViewById(R.id.exIcon);
+            exName = itemView.findViewById(R.id.exName);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHolder> {
-    private List<SettingModel>settings;
-    private Context context;
+    private final List<SettingModel>settings;
 
-    public SettingsAdapter(List<SettingModel> settings, Context context) {
+    public SettingsAdapter(List<SettingModel> settings) {
         this.settings = settings;
-        this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.settings_layout,parent,false);
-        return new SettingsAdapter.ViewHolder(v);
+        return new ViewHolder(v);
     }
 
     @Override
@@ -40,11 +37,11 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
                 v.getContext().startActivity(new Intent(v.getContext(),ForgotPassword.class));
             }
             if(position==1){
-                Intent i = new Intent(Intent.ACTION_SEND);
-                String s = "https://sandeep-prabhakula.github.io/project-apk/app-debug.apk";
-                i.putExtra(Intent.EXTRA_SUBJECT,s);
-                i.setType("message/rfc822");
-                v.getContext().startActivity(Intent.createChooser(i,""));
+                String link = "https://sandeep-prabhakula.github.io/project-apk/app-debug.apk";
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, link);
+                v.getContext().startActivity(Intent.createChooser(intent, "Share Link"));
             }
         });
 
@@ -55,15 +52,15 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         return settings.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView textView9;
-        private ImageView imageView3;
-        private LinearLayout linearLayout;
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        private final TextView textView9;
+        private final ImageView imageView3;
+        private final LinearLayout linearLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView9 = (TextView)itemView.findViewById(R.id.textView9);
-            imageView3 = (ImageView)itemView.findViewById(R.id.imageView3);
-            linearLayout = (LinearLayout)itemView.findViewById(R.id.linearLayout);
+            textView9 = itemView.findViewById(R.id.textView9);
+            imageView3 = itemView.findViewById(R.id.imageView3);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
-    private List<ModelClass> activities;
-    private Context context;
+    private final List<ModelClass> activities;
 
-    public MainAdapter(List<ModelClass> activities, Context context) {
+    public MainAdapter(List<ModelClass> activities) {
         this.activities = activities;
-        this.context = context;
     }
 
     @NonNull
@@ -28,7 +25,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.main_recycle,parent,false);
-        return new MainAdapter.ViewHolder(v);
+        return new ViewHolder(v);
     }
 
     @Override
@@ -57,15 +54,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         return activities.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView textView;
-        private ImageView imageView;
-        private LinearLayout linearLayout;
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        private final TextView textView;
+        private final ImageView imageView;
+        private final LinearLayout linearLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = (ImageView)itemView.findViewById(R.id.imageView);
-            textView = (TextView)itemView.findViewById(R.id.textView);
-            linearLayout = (LinearLayout)itemView.findViewById(R.id.linear);
+            imageView = itemView.findViewById(R.id.imageView);
+            textView = itemView.findViewById(R.id.textView);
+            linearLayout = itemView.findViewById(R.id.linear);
         }
     }
 }

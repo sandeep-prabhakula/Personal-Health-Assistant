@@ -27,7 +27,7 @@ public class MainActivity2 extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.Adapter adapter = new FitnessAdapter(exercises, this);
+        RecyclerView.Adapter adapter = new FitnessAdapter(exercises);
         recyclerView.setAdapter(adapter);
     }
 }
