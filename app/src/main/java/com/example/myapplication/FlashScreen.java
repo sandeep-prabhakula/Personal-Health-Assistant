@@ -39,18 +39,15 @@ public class FlashScreen extends AppCompatActivity {
 
         handler = new Handler();
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if(user!=null){
-                    startActivity(new Intent(FlashScreen.this,MainActivity.class));
-                    finish();
-                }
-                else {
-                    startActivity(new Intent(FlashScreen.this,Login.class));
-                    finish();
-                }
+        handler.postDelayed(() -> {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if(user!=null){
+                startActivity(new Intent(FlashScreen.this,MainActivity.class));
+                finish();
+            }
+            else {
+                startActivity(new Intent(FlashScreen.this,Login.class));
+                finish();
             }
         },1500);
     }

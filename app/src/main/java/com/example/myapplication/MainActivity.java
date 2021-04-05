@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,21 +26,13 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler);
         signOut = findViewById(R.id.signOut);
         auth  = FirebaseAuth.getInstance();
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                auth.signOut();
-                startActivity(new Intent(MainActivity.this,Login.class));
-                finish();
-            }
+        signOut.setOnClickListener(v -> {
+            auth.signOut();
+            startActivity(new Intent(MainActivity.this,Login.class));
+            finish();
         });
         ImageView settings = findViewById(R.id.settings);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Settings.class));
-            }
-        });
+        settings.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,Settings.class)));
         List<ModelClass> activities = new ArrayList<>();
         ModelClass act = new ModelClass(R.drawable.img,"Fitness");
         activities.add(act);

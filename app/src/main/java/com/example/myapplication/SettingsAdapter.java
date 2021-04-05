@@ -35,12 +35,16 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         SettingModel setting = settings.get(position);
         holder.imageView3.setImageResource(setting.getImg());
         holder.textView9.setText(setting.getName());
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(position==0){
-                    v.getContext().startActivity(new Intent(v.getContext(),ForgotPassword.class));
-                }
+        holder.linearLayout.setOnClickListener(v -> {
+            if(position==0){
+                v.getContext().startActivity(new Intent(v.getContext(),ForgotPassword.class));
+            }
+            if(position==1){
+                Intent i = new Intent(Intent.ACTION_SEND);
+                String s = "https://sandeep-prabhakula.github.io/project-apk/app-debug.apk";
+                i.putExtra(Intent.EXTRA_SUBJECT,s);
+                i.setType("message/rfc822");
+                v.getContext().startActivity(Intent.createChooser(i,""));
             }
         });
 
