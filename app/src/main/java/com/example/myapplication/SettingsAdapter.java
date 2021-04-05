@@ -37,7 +37,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
                 v.getContext().startActivity(new Intent(v.getContext(),ForgotPassword.class));
             }
             if(position==1){
-                String link = "https://sandeep-prabhakula.github.io/project-apk/app-debug.apk";
+                String link = "https://github.com/sandeep-prabhakula/sandeep-prabhakula.github.io/blob/main/project-apk/app-debug.apk?raw=true";
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, link);
