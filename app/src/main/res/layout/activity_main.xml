@@ -19,8 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_power_settings_new_24"
-        app:tint="#FF0000"
-        tools:ignore="VectorDrawableCompat" />
+        app:tint="#FF0000" />
 
     <ImageView
         android:id="@+id/settings"

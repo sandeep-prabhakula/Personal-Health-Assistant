@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,5 +49,15 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.Adapter adapter = new MainAdapter(activities);
         recyclerView.setAdapter(adapter);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Exit")
+                .setMessage("do you want to exit ?")
+        .setPositiveButton("YES", (dialog, which) -> MainActivity.super.onBackPressed())
+        .setNegativeButton("NO",null)
+        .show();
     }
 }
