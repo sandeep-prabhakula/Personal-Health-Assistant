@@ -1,8 +1,8 @@
 package com.example.myapplication;
 
 public class SettingModel {
-    private int img;
-    private String name;
+    private final int img;
+    private final String name;
 
     public SettingModel(int img, String name) {
         this.img = img;

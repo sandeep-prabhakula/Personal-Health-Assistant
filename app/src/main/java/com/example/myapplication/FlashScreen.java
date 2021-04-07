@@ -1,54 +1,55 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+import android.content.Intent;
+import android.hardware.biometrics.BiometricPrompt;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.CancellationSignal;
+import android.os.Handler;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
-import java.util.HashMap;
+import java.util.Objects;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 
 public class FlashScreen extends AppCompatActivity {
     Handler handler;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_flash_screen);
 
         handler = new Handler();
-
-        handler.postDelayed(() -> {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if(user!=null){
-                startActivity(new Intent(FlashScreen.this,MainActivity.class));
-                finish();
+        FlashScreen act = this;
+        Executor ex = Executors.newSingleThreadExecutor();
+        BiometricPrompt bp = new BiometricPrompt.Builder(this)
+                .setTitle("Fingerprint Authentication")
+                .setNegativeButton("CANCEL", ex, (dialog, which) -> FlashScreen.super.onBackPressed())
+                .build();
+        bp.authenticate(new CancellationSignal(), ex, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                act.runOnUiThread(() -> handler.postDelayed(() -> {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if(user!=null){
+                        startActivity(new Intent(FlashScreen.this,MainActivity.class));
+                    }
+                    else {
+                        startActivity(new Intent(FlashScreen.this,Login.class));
+                    }
+                    finish();
+                },1500));
             }
-            else {
-                startActivity(new Intent(FlashScreen.this,Login.class));
-                finish();
-            }
-        },1500);
+        });
     }
 }

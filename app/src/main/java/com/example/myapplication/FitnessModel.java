@@ -1,8 +1,8 @@
 package com.example.myapplication;
 
 public class FitnessModel {
-    private int img;
-    private String name;
+    private final int img;
+    private final String name;
 
     public FitnessModel(int img, String name) {
         this.img = img;

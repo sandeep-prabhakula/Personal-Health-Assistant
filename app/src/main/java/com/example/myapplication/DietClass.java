@@ -1,7 +1,7 @@
 package com.example.myapplication;
 
 public class DietClass {
-    private String diet;
+    private final String diet;
 
     public DietClass(String diet) {
         this.diet = diet;

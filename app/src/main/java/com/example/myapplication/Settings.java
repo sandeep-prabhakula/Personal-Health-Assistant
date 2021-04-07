@@ -24,6 +24,8 @@ public class Settings extends AppCompatActivity {
         settings.add(setting);
         SettingModel setting1 = new SettingModel(R.drawable.ic_baseline_people_24,"Invite Friends");
         settings.add(setting1);
+        SettingModel setting2 = new SettingModel(R.drawable.ic_baseline_language_24,"Change Language");
+        settings.add(setting2);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
