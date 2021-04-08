@@ -31,13 +31,10 @@
     <string name="fever">Fever</string>
     <string name="nasal_congestion">Nasal Congestion</string>
     <string name="breathing_problems">Breathing Problems</string>
-    <string name="feature_image_main_recyclerView">Feature Image</string>
-    <string name="steps_today">Steps Today</string>
     <string name="enter_the_height_in_cms">Enter the Height in cms</string>
     <string name="enter_the_weight_in_kgs">Enter the Weight in Kgs</string>
     <string name="get_bmi_button">Get BMI</string>
     <string name="bmi_chart">BMI Chart</string>
-    <string name="exercise_img">Exercise Image</string>
     <string name="settings">Settings</string>
     <string name="healthy_side_login_heading">Healthy Side</string>
     <string name="welcome_to_login_heading">Welcome To</string>
@@ -61,4 +58,7 @@
     <string name="phone_auth_login_activity">PHONE</string>
     <string name="email_auth_login_activity">EMAIL</string>
     <string name="active_auth_login_activity">________</string>
+    <string name="feature_image_recycler_view">Feature Image</string>
+    <string name="exercise_img">Exercise Image</string>
+    <string name="title_activity_maps">Hospitals nearby</string>
 </resources>

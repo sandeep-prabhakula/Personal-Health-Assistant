@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linear"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="60dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_weight="1"
-        android:paddingBottom="15dp"
-        app:srcCompat="@drawable/img"
-        android:contentDescription="@string/feature_image_main_recyclerView" />
+        android:contentDescription="@string/feature_image_recycler_view"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp"
+        app:srcCompat="@drawable/img" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"
         android:textColor="#FF0000"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 </LinearLayout>

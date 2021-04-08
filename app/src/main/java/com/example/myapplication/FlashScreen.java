@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.os.Handler;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -21,7 +25,6 @@ import java.util.concurrent.Executors;
 public class FlashScreen extends AppCompatActivity {
     Handler handler;
 
-
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +34,10 @@ public class FlashScreen extends AppCompatActivity {
 
         handler = new Handler();
         FlashScreen act = this;
+
         Executor ex = Executors.newSingleThreadExecutor();
         BiometricPrompt bp = new BiometricPrompt.Builder(this)
-                .setTitle("Fingerprint Authentication")
+                .setTitle("Unlock Healthy Side")
                 .setNegativeButton("CANCEL", ex, (dialog, which) -> FlashScreen.super.onBackPressed())
                 .build();
         bp.authenticate(new CancellationSignal(), ex, new BiometricPrompt.AuthenticationCallback() {
@@ -51,5 +55,6 @@ public class FlashScreen extends AppCompatActivity {
                 },1500));
             }
         });
+
     }
 }

@@ -3,26 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="100dp">
 
     <ImageView
         android:id="@+id/exIcon"
-        android:layout_width="30dp"
-        android:layout_height="60dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/exercise_img"
-        android:paddingLeft="15dp"
-        android:paddingTop="10dp"
-        android:paddingRight="15dp"
-        android:paddingBottom="10dp"
-        app:srcCompat="@drawable/img2" />
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/img"
+        android:contentDescription="@string/exercise_img" />
 
     <TextView
         android:id="@+id/exName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"
         android:textColor="#FF0000"
+        android:textSize="18sp"
         android:textStyle="bold" />
 </LinearLayout>
