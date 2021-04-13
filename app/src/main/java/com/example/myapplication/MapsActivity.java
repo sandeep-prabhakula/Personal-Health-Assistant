@@ -34,9 +34,6 @@ public class MapsActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getCurrentLocation();
         }
-        else{
-
-        }
     }
 
     private void getCurrentLocation() {
@@ -54,15 +51,12 @@ public class MapsActivity extends AppCompatActivity {
         Task<Location> task = client.getLastLocation();
         task.addOnSuccessListener(location -> {
             if(location!=null){
-                supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-                    @Override
-                    public void onMapReady(GoogleMap googleMap) {
-                        LatLng latLng= new LatLng(location.getLatitude(),location.getLongitude());
-                        MarkerOptions options = new MarkerOptions().position(latLng)
-                                .title("You are here");
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
-                        googleMap.addMarker(options);
-                    }
+                supportMapFragment.getMapAsync(googleMap -> {
+                    LatLng latLng= new LatLng(location.getLatitude(),location.getLongitude());
+                    MarkerOptions options = new MarkerOptions().position(latLng)
+                            .title("You are here");
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                    googleMap.addMarker(options).setPosition(latLng);
                 });
             }
         });

@@ -24,6 +24,7 @@
             android:value="AIzaSyAPiO_ntjE7UinRcRK4r6q8BcXhWQ8GHfI"/>
 
         <activity android:name=".MapsActivity"
+            android:label="Hospitals Near By"
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".PhoneAuthentication"
