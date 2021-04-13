@@ -47,7 +47,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 v.getContext().startActivity(new Intent(v.getContext(),BMICalculation.class));
             }
             if(position==4){
-//                v.getContext().startActivity(new Intent(v.getContext(),MapsActivity.class));
+                v.getContext().startActivity(new Intent(v.getContext(),MapsActivity.class));
             }
         });
     }

@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -42,6 +50,24 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, link);
                 v.getContext().startActivity(Intent.createChooser(intent, "Share Link"));
+            }
+            if(position==3){
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                FirebaseUser user = auth.getCurrentUser();
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        builder.setTitle("Delete Account")
+                        .setMessage("Your data will be lost!")
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            AuthCredential ac = EmailAuthProvider.getCredential(user.getEmail(),"rohitman45");
+                            user.reauthenticate(ac).addOnCompleteListener(task -> user.delete().addOnCompleteListener(task1 -> {
+                                if(task1.isSuccessful()){
+                                    v.getContext().startActivity(new Intent(v.getContext(),SignUp.class));
+                                    Toast.makeText(v.getContext(), "Account Deleted", Toast.LENGTH_SHORT).show();
+                                }
+                            }));
+                        })
+                        .setNegativeButton("CANCEL",null)
+                        .show();
             }
         });
 

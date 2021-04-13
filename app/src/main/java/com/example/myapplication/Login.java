@@ -1,9 +1,6 @@
 package com.example.myapplication;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.hardware.biometrics.BiometricPrompt;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -11,14 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class Login extends AppCompatActivity {
     private EditText editTextTextPersonName,editTextTextPassword;
@@ -30,9 +23,9 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
         editTextTextPassword = findViewById(R.id.editTextTextPassword);
+        Button button = findViewById(R.id.button);
         editTextTextPassword.requestFocus();
         editTextTextPersonName.requestFocus();
-        Button button = findViewById(R.id.button);
         TextView textView7 = findViewById(R.id.textView7);
         TextView textView16 = findViewById(R.id.textView16);
         auth = FirebaseAuth.getInstance();
