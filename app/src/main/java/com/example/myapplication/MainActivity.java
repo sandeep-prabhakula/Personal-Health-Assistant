@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -23,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (!isConnected()){
+            showCustomDialog();
+        }
         RecyclerView recyclerView = findViewById(R.id.recycler);
         ImageView signOut = findViewById(R.id.signOut);
         auth  = FirebaseAuth.getInstance();
@@ -51,7 +57,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
-
+    private void showCustomDialog() {
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.ic_baseline_error_24)
+                .setTitle("Error")
+                .setMessage("No Internet Connection")
+                .setCancelable(false)
+                .show();
+    }
+    private boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wificonn = cm.getActiveNetworkInfo();
+        NetworkInfo mobileconn = cm.getActiveNetworkInfo();
+        return (wificonn != null && wificonn.isConnected()) || (mobileconn != null && mobileconn.isConnected());
+    }
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
