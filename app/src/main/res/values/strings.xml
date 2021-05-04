@@ -61,4 +61,5 @@
     <string name="feature_image_recycler_view">Feature Image</string>
     <string name="exercise_img">Exercise Image</string>
     <string name="title_activity_maps">Hospitals nearby</string>
+    <string name="username">UserName</string>
 </resources>

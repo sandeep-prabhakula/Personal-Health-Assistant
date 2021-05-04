@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUp extends AppCompatActivity {
     private FirebaseAuth auth;
-    private EditText editTextTextEmailAddress,editTextTextPassword2,editTextTextPassword3;
+    private EditText editTextTextEmailAddress,editTextTextPassword2,editTextTextPassword3,username;
     private Button button5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
