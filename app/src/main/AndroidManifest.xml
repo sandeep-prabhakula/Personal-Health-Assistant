@@ -20,16 +20,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".FingerAuth"
+            android:label="Fingerprint Authentication"/>
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAPiO_ntjE7UinRcRK4r6q8BcXhWQ8GHfI"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAPiO_ntjE7UinRcRK4r6q8BcXhWQ8GHfI" />
 
-        <activity android:name=".MapsActivity"
-            android:label="Hospitals Near By"
-            android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".PhoneAuthentication"
-            android:label="Login" />
+            android:name=".MapsActivity"
+            android:label="Hospitals Near By"
+            android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".Settings"
             android:label="Settings"

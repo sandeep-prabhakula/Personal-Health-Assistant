@@ -62,4 +62,6 @@
     <string name="exercise_img">Exercise Image</string>
     <string name="title_activity_maps">Hospitals nearby</string>
     <string name="username">UserName</string>
+    <string name="authentication_failed_try_again_to_continue_using_healthyside">Authentication Failed. Try again to continue using HealthySide</string>
+    <string name="try_again">Try Again</string>
 </resources>

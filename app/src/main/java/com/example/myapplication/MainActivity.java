@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (!isConnected()){
             showCustomDialog();
+            this.recreate();
         }
         RecyclerView recyclerView = findViewById(R.id.recycler);
         ImageView signOut = findViewById(R.id.signOut);
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(R.drawable.ic_baseline_error_24)
                 .setTitle("Error")
                 .setMessage("No Internet Connection")
+//                .setPositiveButton("CONNECT", (dialog, which) -> new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS))
                 .setCancelable(false)
                 .show();
     }
@@ -76,8 +79,12 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Exit")
                 .setMessage("do you want to exit ?")
-        .setPositiveButton("YES", (dialog, which) -> MainActivity.super.onBackPressed())
-        .setNegativeButton("NO",null)
+        .setPositiveButton("YES", (dialog, which) -> {
+           Intent i =  new Intent(Intent.ACTION_MAIN);
+           i.addCategory(Intent.CATEGORY_HOME);
+           i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+           startActivity(i);
+        }).setNegativeButton("NO",null)
         .show();
     }
 }

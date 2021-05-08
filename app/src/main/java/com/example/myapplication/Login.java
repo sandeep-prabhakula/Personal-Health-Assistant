@@ -29,11 +29,8 @@ public class Login extends AppCompatActivity {
         TextView textView7 = findViewById(R.id.textView7);
         TextView textView16 = findViewById(R.id.textView16);
         auth = FirebaseAuth.getInstance();
-        TextView phoneAuth = findViewById(R.id.phoneAuth);
-        phoneAuth.setOnClickListener(v -> {
-            startActivity(new Intent(Login.this,PhoneAuthentication.class));
-            finish();
-        });
+        button.setFocusableInTouchMode(true);
+        button.requestFocus();
         button.setOnClickListener(v -> {
             String email = editTextTextPersonName.getText().toString();
             String pass = editTextTextPassword.getText().toString();
@@ -67,5 +64,13 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i =  new Intent(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_HOME);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
     }
 }
