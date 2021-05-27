@@ -49,6 +49,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             if(position==4){
                 v.getContext().startActivity(new Intent(v.getContext(),MapsActivity.class));
             }
+            if(position==5){
+                v.getContext().startActivity(new Intent(v.getContext(),CovidCount.class));
+            }
         });
     }
 

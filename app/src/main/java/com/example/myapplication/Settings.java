@@ -38,8 +38,8 @@ public class Settings extends AppCompatActivity {
         String[] email = mail.split("");
         textView6.setOnClickListener(v -> {
             Intent i = new Intent(Intent.ACTION_SEND);
-            i.putExtra(Intent.EXTRA_EMAIL,email);
-            i.setType("message/rfc822");
+            i.putExtra(Intent.EXTRA_EMAIL,new String[]{"sandeepprabhakula10@gmail.com"});
+            i.setType("text/plain");
             startActivity(Intent.createChooser(i,"choose an email app"));
         });
     }

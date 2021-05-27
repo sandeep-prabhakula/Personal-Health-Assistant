@@ -1,19 +1,12 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class BMICalculation extends AppCompatActivity{
 
@@ -32,7 +25,8 @@ public class BMICalculation extends AppCompatActivity{
             double l = Double.parseDouble(h)*0.01;
             double m = Double.parseDouble(w);
             double bmi = m/(l*l);
-            result.setText("BMI is : "+bmi+" for more details check the the chart below");
+            String res = "BMI is : "+bmi+" for more details check the the chart below";
+            result.setText(res);
         });
     }
 }
