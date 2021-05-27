@@ -48,14 +48,7 @@
     <string name="active_signup">________</string>
     <string name="sign_up_sign_up_activity">SIGN UP</string>
     <string name="login_sign_up_activity">LOGIN</string>
-    <string name="get_code_phone_auth">Get Code</string>
-    <string name="mobile_number_phone_auth">Mobile Number</string>
-    <string name="enter_verification_code">Enter Verification Code</string>
-    <string name="verify">verify</string>
-    <string name="active_phone_auth">________</string>
-    <string name="phone_auth">PHONE</string>
     <string name="email_auth">EMAIL</string>
-    <string name="phone_auth_login_activity">PHONE</string>
     <string name="email_auth_login_activity">EMAIL</string>
     <string name="active_auth_login_activity">________</string>
     <string name="feature_image_recycler_view">Feature Image</string>

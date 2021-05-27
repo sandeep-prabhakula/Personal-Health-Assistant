@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         activities.add(act3);
         ModelClass act4 = new ModelClass(R.drawable.ic_baseline_local_hospital_24,"Hospitals Nearby");
         activities.add(act4);
+        ModelClass act5 = new ModelClass(R.drawable.ic_baseline_coronavirus_24,"Covid-19 Count");
+        activities.add(act5);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
