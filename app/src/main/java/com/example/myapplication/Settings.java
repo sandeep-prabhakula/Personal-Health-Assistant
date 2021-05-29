@@ -39,6 +39,7 @@ public class Settings extends AppCompatActivity {
         textView6.setOnClickListener(v -> {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.putExtra(Intent.EXTRA_EMAIL,new String[]{"sandeepprabhakula10@gmail.com"});
+            i.putExtra(Intent.EXTRA_EMAIL,email);
             i.setType("text/plain");
             startActivity(Intent.createChooser(i,"choose an email app"));
         });
