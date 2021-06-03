@@ -1,13 +1,13 @@
 package com.example.myapplication;
 
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,58 +20,16 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CovidCount extends AppCompatActivity implements CovidRecycler.ItemClickListener{
     @Override
     public void onItemClick(View v, int position) {
-        Toast.makeText(this, "clicked "+adapter.get(position), Toast.LENGTH_SHORT).show();
-//        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-//        CustomTabsIntent customTabsIntent = builder.build();
-//        customTabsIntent.launchUrl(this, Uri.parse("twitter.com"));
-    }
-
-    public class BG extends AsyncTask<String,Void,String> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(String... urls) {
-            String result = "";
-            URL url;
-            HttpURLConnection conn;
-            try {
-                url = new URL(urls[0]);
-                conn = (HttpURLConnection) url.openConnection();
-                InputStream in = conn.getInputStream();
-                InputStreamReader reader = new InputStreamReader(in);
-                int data = reader.read();
-                while (data != -1) {
-                    char current = (char) data;
-                    result += current;
-                    data = reader.read();
-                }
-            }
-            catch (Exception e){
-                e.printStackTrace();
-                return "something went wrong";
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Log.d("apidata",s);
-            loadRecyclerViewData();
-        }
+//        Toast.makeText(this, "clicked "+adapter.get(position), Toast.LENGTH_SHORT).show();
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(this, Uri.parse("https://twitter.com"));
     }
 
     String api_url = "https://disease.sh/v3/covid-19/countries/";
@@ -83,8 +41,6 @@ public class CovidCount extends AppCompatActivity implements CovidRecycler.ItemC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_covid_count);
         cases = findViewById(R.id.StateData);
-        BG bg = new BG();
-        bg.execute("https://disease.sh/v3/covid-19/countries/");
         data = new ArrayList<>();
         loadRecyclerViewData();
         cases.addItemDecoration(new DividerItemDecoration(cases.getContext(),DividerItemDecoration.VERTICAL));
@@ -120,6 +76,7 @@ public class CovidCount extends AppCompatActivity implements CovidRecycler.ItemC
                     e.printStackTrace();
                 }
             }
+            cases.setAdapter(adapter);
         }, error -> {
             pd.dismiss();
             Log.d("Aipaye...",error.toString());

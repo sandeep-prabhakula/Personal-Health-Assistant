@@ -35,10 +35,10 @@ public class Settings extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         TextView textView6 = findViewById(R.id.textView6);
         String mail = textView6.getText().toString().trim();
-        String[] email = mail.split("");
+//        String[] email = mail.split("");
         textView6.setOnClickListener(v -> {
             Intent i = new Intent(Intent.ACTION_SEND);
-            i.putExtra(Intent.EXTRA_EMAIL,new String[]{"sandeepprabhakula10@gmail.com"});
+            i.putExtra(Intent.EXTRA_EMAIL,new String[]{mail});
             i.setType("text/plain");
             startActivity(Intent.createChooser(i,"choose an email app"));
         });
