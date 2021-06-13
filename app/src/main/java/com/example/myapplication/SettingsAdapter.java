@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,9 +70,6 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
             }
         });
 
-    }
-
-    private void setLocale(String lang) {
     }
 
     @Override

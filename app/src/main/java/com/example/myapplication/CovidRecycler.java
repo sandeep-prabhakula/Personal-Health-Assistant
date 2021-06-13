@@ -51,7 +51,7 @@ public class CovidRecycler extends RecyclerView.Adapter<CovidRecycler.ViewHolder
         return data.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView country;
         private final TextView active;
         private final TextView recovered;

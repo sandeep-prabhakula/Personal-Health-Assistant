@@ -57,4 +57,12 @@
     <string name="username">UserName</string>
     <string name="authentication_failed_try_again_to_continue_using_healthyside">Authentication Failed. Try again to continue using HealthySide</string>
     <string name="try_again">Try Again</string>
+    <string name="flag">FLAG</string>
+    <string name="country">country</string>
+    <string name="deadcases">deadcases</string>
+    <string name="reccases">reccases</string>
+    <string name="actcases">actcases</string>
+    <string name="deceased">Deceased</string>
+    <string name="recovered">Recovered</string>
+    <string name="active_cases">Active</string>
 </resources>
