@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -23,14 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CovidCount extends AppCompatActivity implements CovidRecycler.ItemClickListener{
-    @Override
-    public void onItemClick(View v, int position) {
-//        Toast.makeText(this, "clicked "+adapter.get(position), Toast.LENGTH_SHORT).show();
-        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-        CustomTabsIntent customTabsIntent = builder.build();
-        customTabsIntent.launchUrl(this, Uri.parse("https://twitter.com"));
-    }
+public class CovidCount extends AppCompatActivity {
 
     String api_url = "https://disease.sh/v3/covid-19/countries/";
     List<CovidDataModel> data;
@@ -47,9 +42,7 @@ public class CovidCount extends AppCompatActivity implements CovidRecycler.ItemC
         cases.setHasFixedSize(true);
         cases.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CovidRecycler(data);
-        cases.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        adapter.setOnclickListener(this);
     }
 
     private void loadRecyclerViewData() {
@@ -62,15 +55,15 @@ public class CovidCount extends AppCompatActivity implements CovidRecycler.ItemC
             for(int i=0;i<response.length();i++){
                 try {
                     JSONObject obj = response.getJSONObject(i);
-                    Log.d("country Name",obj.getString("country")+" "+
-                            obj.getString("active")+" "+
-                            obj.getString("recovered")+" "+
-                            obj.getString("deaths"));
+                    JSONObject fl = obj.getJSONObject("countryInfo");
+                    Log.d("yay!",fl.getString("iso2"));
                     CovidDataModel model = new CovidDataModel(
                                                 obj.getString("country"),
                                                 obj.getString("active"),
                                                 obj.getString("recovered"),
-                                                obj.getString("deaths"));
+                                                obj.getString("deaths"),
+                                                fl.getString("iso2"),
+                                                fl.getString("flag"));
                     data.add(model);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -79,7 +72,9 @@ public class CovidCount extends AppCompatActivity implements CovidRecycler.ItemC
             cases.setAdapter(adapter);
         }, error -> {
             pd.dismiss();
-            Log.d("Aipaye...",error.toString());
+            if(error instanceof NetworkError){
+                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+            }
         });
         rq.add(jsonArrayRequest);
     }

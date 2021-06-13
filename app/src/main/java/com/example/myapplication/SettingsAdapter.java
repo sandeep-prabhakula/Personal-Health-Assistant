@@ -73,6 +73,9 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
 
     }
 
+    private void setLocale(String lang) {
+    }
+
     @Override
     public int getItemCount() {
         return settings.size();

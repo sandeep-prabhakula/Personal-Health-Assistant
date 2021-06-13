@@ -1,18 +1,23 @@
 package com.example.myapplication;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 public class CovidRecycler extends RecyclerView.Adapter<CovidRecycler.ViewHolder> {
     private final List<CovidDataModel> data;
-    public ItemClickListener itemClickListener;
     public CovidRecycler(List<CovidDataModel> data) {
         this.data = data;
     }
@@ -33,6 +38,12 @@ public class CovidRecycler extends RecyclerView.Adapter<CovidRecycler.ViewHolder
         holder.recovered.setText(model.getRecover());
         holder.deaths.setText(model.getDeaths());
         holder.country.setText(model.getState());
+        Glide.with(holder.flag.getContext()).load(model.getFlag()).into(holder.flag);
+        holder.covidTable.setOnClickListener(v -> {
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent build = builder.build();
+            build.launchUrl(v.getContext(), Uri.parse("https://corona.dnsforfamily.com/graph.png?c="+model.getSymbol()));
+        });
     }
 
     @Override
@@ -40,34 +51,21 @@ public class CovidRecycler extends RecyclerView.Adapter<CovidRecycler.ViewHolder
         return data.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView country;
         private final TextView active;
         private final TextView recovered;
         private final TextView deaths;
+        private final ConstraintLayout covidTable;
+        private final ImageView flag;
         public ViewHolder(@NonNull @org.jetbrains.annotations.NotNull View itemView) {
             super(itemView);
             active  = itemView.findViewById(R.id.active);
             recovered = itemView.findViewById(R.id.recovered);
             deaths = itemView.findViewById(R.id.deceased);
             country = itemView.findViewById(R.id.country);
-            itemView.setOnClickListener(this);
+            covidTable = itemView.findViewById(R.id.covidTable);
+            flag = itemView.findViewById(R.id.flag);
         }
-
-        @Override
-        public void onClick(View v) {
-            if(itemClickListener!=null){
-                itemClickListener.onItemClick(v,getAdapterPosition());
-            }
-        }
-    }
-    CovidDataModel get(int id){
-       return data.get(id);
-    }
-    void setOnclickListener(ItemClickListener itemClickListener){
-        this.itemClickListener = itemClickListener;
-    }
-    public interface ItemClickListener{
-        void onItemClick(View v,int position);
     }
 }
